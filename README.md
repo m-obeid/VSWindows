@@ -1,5 +1,5 @@
 
-![V.S. Windows logo](assets/preload/images/KadeEngineLogo.png)
+![V.S. Windows logo](assets/preload/images/repologo.png)
 
 # Friday Night Funkin': V.S. Windows
 ## Friday Night Funkin'
