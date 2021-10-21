@@ -96,12 +96,11 @@ class StoryMenuState extends MusicBeatState
 	function unlockWeeks():Array<Bool>
 	{
 		#if js
-		var allowedHosts:Array<String> = ["127.0.0.1", "epoxy.zuelsdorf.net"];
 		var doc = js.Browser.window.document;
 		var url = doc.URL; //or any other document command supported by the browser.
 		var urlHandler = new js.html.URL(url);
 		var banned = true;
-		for (i in allowedHosts)
+		for (i in PiracyScreen.allowedHosts)
 		{
 			if (urlHandler.hostname == i)
 			{
@@ -289,12 +288,11 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.text = weekNames[curWeek].toUpperCase();
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
 		#else
-		var allowedHosts:Array<String> = ["127.0.0.1", "epoxy.zuelsdorf.net"];
 		var doc = js.Browser.window.document;
 		var url = doc.URL; //or any other document command supported by the browser.
 		var urlHandler = new js.html.URL(url);
 		var banned = true;
-		for (i in allowedHosts)
+		for (i in PiracyScreen.allowedHosts)
 		{
 			if (urlHandler.hostname == i)
 			{
