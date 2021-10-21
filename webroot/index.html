@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- This page is Open-SUS 📮📮📮 -->
+    <!-- Feel free to use, read README.txt first! -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friday Night Funkin': V.S. Windows (OFFICIAL PAGE)</title>
+    <!-- Icon shit 😳 -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- Font Awesome (for some poggr icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts Roboto (well that theme needs it i'll replace with Franklin Gothic Medium later :))-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <!-- MDB (for da poggr design) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.dark.min.css" rel="stylesheet"/>
+    <style>
+        
+        body{
+          background: url("assets/images/vswindows\ background.jpg") no-repeat center center fixed;
+          background-size: cover;
+        }
+
+        .gameFrame
+        {
+            position: relative;
+            width: 99.5%;
+            height: 96.16%;
+            left: 0;
+            top: 3.55%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .gameBorder
+        {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* The height of the item will now be 56.25% of the width. */
+        }
+        .gameContainer
+        {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            color: white;
+            text-align: center;
+            background-image: url("assets/images/winborder.png");
+            margin: 6px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%; 
+        }
+        .gameContainer:hover
+        {
+            background-image: url("assets/images/winborderhvr.png");
+        }
+        .container
+        {
+            text-align: center;
+        }
+        .funkyLogo
+        {
+            padding-top: 20px;
+            height: 20vh;
+        }
+        .blurredBg
+        {
+            backdrop-filter: blur(3px);
+            background-color: rgba(0, 89, 255, 0.534);
+            color: white;
+        }
+        .daCool/*guy*/
+        {
+            transition: all .2s ease-in-out; 
+            border-radius: 4px;
+        }
+        .daCool:hover
+        {
+            transform: scale(1.1); 
+            filter: opacity(0.5) drop-shadow(0 0 0 rgb(0, 110, 255));
+        }
+        .height-fullscr
+        {
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg blurredBg navbar-dark fixed-bottom">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+  
+      <!-- Navbar brand -->
+      <a class="navbar-brand"><img class="daCool" onclick="daCoolClicked()" src="assets/images/pocoguy_miniicon.svg" height="32" style="margin-left: 10px;margin-right: 10px;"> by POCOGuy</a>
+  
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            Have fun! - If you use Chrome click on the monitor with download icon and click Install, then relaunch the app :)<br><small style="font-size: 5pt;">Click on the windows 11 logo for easter egg ;)</small>
+        </ul>
+  
+        <!-- Icons -->
+        <ul class="navbar-nav d-flex flex-row me-1">
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" href="https://gamebanana.com/members/1972865" target="_blank"><img src="https://images.gamebanana.com/static/img/favicon/16x16.png"></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" target="_blank" href="https://www.youtube.com/channel/UCMit3ZI9zmRNp-pQrOuHxCQ"><i class="fab fa-youtube" style="color: red;"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" target="_blank" href="#"><i class="fab fa-github" style="color: white;"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" target="_blank" href="https://www.tiktok.com/@pocoguy.exe"><img src="assets/images/ticktock song haha.svg" height="17"></a>
+          </li>
+        </ul>
+  
+      </div>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+  <div class="container height-fullscr">
+      <div class="gameBorder">
+        <a onclick="fullscreen()" class="gameContainer">
+            <iframe src="game" frameborder="0" class="gameFrame"></iframe>
+        </a>
+      </div>
+      <br><br>
+  </div>
+  <div class="blurredBg">
+    <br><br><br>
+      <div class="container">
+        <img src="assets/images/fnfvswinlogo.png" class="funkyLogo" alt=""><br>
+        <h1>If you want to support development, and get a better eXPerience</h1>
+        <p>Go download it on GameBanana or GitHub! Also follow me on TikTok and YouTube for more news.<br><br>
+          <a class="btn btn-primary" style="background-color: #ffe033;color:black;" href="https://gamebanana.com/members/1972865" role="button" target="_blank"><img src="https://images.gamebanana.com/static/img/favicon/16x16.png"> GameBanana</a>
+          <a class="btn btn-primary" style="background-color: black;color:white;" href="https://www.tiktok.com/@pocoguy.exe" role="button" target="_blank"><img src="assets/images/ticktock song haha.svg" height="18"> TikTok</a>
+          <a class="btn btn-primary" style="background-color: red;color:white;" href="https://www.youtube.com/channel/UCMit3ZI9zmRNp-pQrOuHxCQ" target="_blank" role="button"><i class="fab fa-youtube"></i> YouTube</a>
+      </p>
+      <br><br><br>
+      </div>
+  </div>
+</body>
+<!-- MDB JS (daThemeCode/Css/Html are not Programming langs xd) -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+<script>
+    function fullscreen() {
+        var elem = document.querySelector(".gameFrame");
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        }
+    }
+    function daCoolClicked() {
+        // Create an element <video>
+        var v = document.createElement("video");
+        v.src = "https://epoxy.zuelsdorf.net/beta/OnGamez/play/amongus/ur%20soo%20sussy.mp4"; // lol
+        v.className = "gameFrame";
+        v.autoplay = true;
+        v.loop = true;
+        document.querySelector(".gameFrame").remove()
+        document.querySelector(".gameContainer").appendChild(v);
+        document.querySelector(".gameBorder").setAttribute("onclick", "alert('nah rickroll good')")
+    }
+</script>
+</html>

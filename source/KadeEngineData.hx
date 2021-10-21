@@ -6,11 +6,20 @@ class KadeEngineData
 {
     public static function initSave()
     {
-        if (FlxG.save.data.newInput == null)
+        if (FlxG.save.data.weekUnlocked == null)
+			FlxG.save.data.weekUnlocked = 8;
+
+		if (FlxG.save.data.newInput == null)
 			FlxG.save.data.newInput = true;
 
 		if (FlxG.save.data.downscroll == null)
 			FlxG.save.data.downscroll = false;
+
+		if (FlxG.save.data.antialiasing == null)
+			FlxG.save.data.antialiasing = true;
+
+		if (FlxG.save.data.missSounds == null)
+			FlxG.save.data.missSounds = true;
 
 		if (FlxG.save.data.dfjk == null)
 			FlxG.save.data.dfjk = false;
@@ -25,7 +34,7 @@ class KadeEngineData
 			FlxG.save.data.songPosition = false;
 
 		if (FlxG.save.data.fps == null)
-			FlxG.save.data.fps = false;
+			FlxG.save.data.fps = true;
 
 		if (FlxG.save.data.changedHit == null)
 		{
@@ -38,10 +47,18 @@ class KadeEngineData
 			FlxG.save.data.fpsRain = false;
 
 		if (FlxG.save.data.fpsCap == null)
-			FlxG.save.data.fpsCap = 120;
+			#if cpp
+		FlxG.save.data.fpsCap = 120;
+		#else
+		FlxG.save.data.fpsCap = 60; // better in html5
+		#end
 
 		if (FlxG.save.data.fpsCap > 285 || FlxG.save.data.fpsCap < 60)
+			#if cpp
 			FlxG.save.data.fpsCap = 120; // baby proof so you can't hard lock ur copy of kade engine
+			#else
+			FlxG.save.data.fpsCap = 60; // better in html5
+			#end
 		
 		if (FlxG.save.data.scrollSpeed == null)
 			FlxG.save.data.scrollSpeed = 1;
@@ -56,13 +73,16 @@ class KadeEngineData
 			FlxG.save.data.accuracyMod = 1;
 
 		if (FlxG.save.data.watermark == null)
-			FlxG.save.data.watermark = false;
+			FlxG.save.data.watermark = true;
 
 		if (FlxG.save.data.ghost == null)
 			FlxG.save.data.ghost = true;
 
 		if (FlxG.save.data.distractions == null)
 			FlxG.save.data.distractions = true;
+		
+		if (FlxG.save.data.stepMania == null)
+			FlxG.save.data.stepMania = false;
 
 		if (FlxG.save.data.flashing == null)
 			FlxG.save.data.flashing = true;
@@ -74,7 +94,7 @@ class KadeEngineData
 			FlxG.save.data.botplay = false;
 
 		if (FlxG.save.data.cpuStrums == null)
-			FlxG.save.data.cpuStrums = false;
+			FlxG.save.data.cpuStrums = true;
 
 		if (FlxG.save.data.strumline == null)
 			FlxG.save.data.strumline = false;
@@ -94,6 +114,9 @@ class KadeEngineData
 		if (FlxG.save.data.optimize == null)
 			FlxG.save.data.optimize = false;
 		
+		if (FlxG.save.data.cacheImages == null)
+			FlxG.save.data.cacheImages = false;
+
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 		
 		KeyBinds.gamepad = gamepad != null;

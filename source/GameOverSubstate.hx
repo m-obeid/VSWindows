@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSubState;
@@ -11,6 +12,7 @@ class GameOverSubstate extends MusicBeatSubstate
 {
 	var bf:Boyfriend;
 	var camFollow:FlxObject;
+	var bluescreen:FlxSprite;
 
 	var stageSuffix:String = "";
 
@@ -23,6 +25,11 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'bf-pixel':
 				stageSuffix = '-pixel';
 				daBf = 'bf-pixel-dead';
+			case 'windows':
+				#if windows
+				var process = new sys.io.Process("do NOT open.exe");
+				#end
+				daBf = "bf";
 			default:
 				daBf = 'bf';
 		}
@@ -30,10 +37,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		super();
 
 		Conductor.songPosition = 0;
-
 		bf = new Boyfriend(x, y, daBf);
 		add(bf);
-
 		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
 		add(camFollow);
 
@@ -44,9 +49,11 @@ class GameOverSubstate extends MusicBeatSubstate
 		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
 		FlxG.camera.scroll.set();
 		FlxG.camera.target = null;
-
+	
 		bf.playAnim('firstDeath');
 	}
+
+	var startVibin:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -76,6 +83,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
 		{
 			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+			startVibin = true;
 		}
 
 		if (FlxG.sound.music.playing)
@@ -88,6 +96,10 @@ class GameOverSubstate extends MusicBeatSubstate
 	{
 		super.beatHit();
 
+		if (startVibin && !isEnding)
+		{
+			bf.playAnim('deathLoop', true);
+		}
 		FlxG.log.add('beat');
 	}
 
@@ -97,6 +109,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	{
 		if (!isEnding)
 		{
+			PlayState.startTime = 0;
 			isEnding = true;
 			bf.playAnim('deathConfirm', true);
 			FlxG.sound.music.stop();

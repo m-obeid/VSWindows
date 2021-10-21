@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="DesktopAssets.png"><SubTexture name="DesktopAssets Controlpanel0000" x="0" y="0" width="260" height="260" frameX="0" frameY="0" frameWidth="260" frameHeight="260" />
+<SubTexture name="DesktopAssets Freeplay0000" x="260" y="0" width="260" height="260" frameX="0" frameY="0" frameWidth="260" frameHeight="260" />
+<SubTexture name="DesktopAssets Kickstarter0000" x="520" y="0" width="260" height="260" frameX="0" frameY="0" frameWidth="260" frameHeight="260" />
+<SubTexture name="DesktopAssets cursor0000" x="780" y="0" width="344" height="267" frameX="0" frameY="0" frameWidth="344" frameHeight="267" />
+<SubTexture name="DesktopAssets StoryMenu0000" x="0" y="267" width="260" height="260" frameX="0" frameY="0" frameWidth="260" frameHeight="260" />
+</TextureAtlas>

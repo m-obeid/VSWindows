@@ -1,0 +1,8 @@
+cheer 0 -41
+sad -2 -48
+idle 0 -41
+singUP 0 10
+singRIGHT 0 -49
+singLEFT 0 -50
+singDOWN 0 -49
+scared 0 -45

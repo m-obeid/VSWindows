@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="184.24001"
+   height="184.24001"
+   version="1.1"
+   viewBox="0 0 48.746221 48.746"
+   id="svg30"
+   sodipodi:docname="Windows_11_logo.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs34" />
+  <sodipodi:namedview
+     id="namedview32"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     showgrid="false"
+     height="184.24001px"
+     inkscape:zoom="2"
+     inkscape:cx="471"
+     inkscape:cy="326.25"
+     inkscape:window-width="2560"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg30" />
+  <g
+     transform="translate(271.22,-22.579)"
+     fill="#0078d4"
+     id="g28" />
+  <path
+     style="fill:#cccccc;stroke-width:0.934579"
+     d="M 0,43.457944 V 0.46728972 H 43.457944 86.915888 V 43.457944 86.448598 H 43.457944 0 Z"
+     id="path1142"
+     transform="matrix(0.26458,0,0,0.26458,0,-1.1032669e-4)" />
+  <path
+     style="fill:#cccccc;stroke-width:0.934579"
+     d="M 0,140.65421 V 97.663551 h 43.457944 43.457944 v 42.990659 42.99065 H 43.457944 0 Z"
+     id="path1181"
+     transform="matrix(0.26458,0,0,0.26458,0,-1.1032669e-4)" />
+  <path
+     style="fill:#cccccc;stroke-width:0.934579"
+     d="M 97.196262,43.457944 V 0.46728972 h 43.457948 43.45794 V 43.457944 86.448598 H 140.65421 97.196262 Z"
+     id="path1220"
+     transform="matrix(0.26458,0,0,0.26458,0,-1.1032669e-4)" />
+  <path
+     style="fill:#cccccc;stroke:none;stroke-width:0.934579"
+     d="M 97.196262,140.65421 V 97.663551 h 43.457948 43.45794 v 42.990659 42.99065 H 140.65421 97.196262 Z"
+     id="path1259"
+     transform="matrix(0.26458,0,0,0.26458,0,-1.1032669e-4)" />
+</svg>

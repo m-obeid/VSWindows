@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="bubble.exe.png"><SubTexture name="bubble.exe opening0000" x="0" y="0" width="516" height="142" frameX="0" frameY="0" frameWidth="516" frameHeight="142" />
+<SubTexture name="bubble.exe opening0001" x="516" y="0" width="516" height="142" frameX="0" frameY="0" frameWidth="516" frameHeight="142" />
+<SubTexture name="bubble.exe opening0002" x="1032" y="0" width="516" height="142" frameX="0" frameY="0" frameWidth="516" frameHeight="142" />
+<SubTexture name="bubble.exe opening0003" x="1548" y="0" width="516" height="142" frameX="0" frameY="0" frameWidth="516" frameHeight="142" />
+<SubTexture name="bubble.exe opening0004" x="0" y="142" width="516" height="142" frameX="0" frameY="0" frameWidth="516" frameHeight="142" />
+<SubTexture name="bubble.exe opening0005" x="516" y="142" width="516" height="142" frameX="0" frameY="0" frameWidth="516" frameHeight="142" />
+<SubTexture name="bubble.exe opening0006" x="1032" y="142" width="516" height="142" frameX="0" frameY="0" frameWidth="516" frameHeight="142" />
+<SubTexture name="bubble.exe normal0000" x="1548" y="142" width="516" height="142" frameX="0" frameY="0" frameWidth="516" frameHeight="142" />
+</TextureAtlas>

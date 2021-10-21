@@ -30,31 +30,44 @@ class DialogueBox extends FlxSpriteGroup
 
 	var portraitLeft:FlxSprite;
 	var portraitRight:FlxSprite;
-
-	var handSelect:FlxSprite;
+	var portraitGf:FlxSprite;
+	
 	var bgFade:FlxSprite;
+
+	public static var endSong:Bool = false;
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
 	{
 		super();
 
-		switch (PlayState.SONG.song.toLowerCase())
+		if (endSong)
 		{
-			case 'senpai':
-				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'thorns':
-				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'welcome':
-				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'executable':
-				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'windows-update':
-				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			FlxG.sound.playMusic(Paths.music('endsong', 'week7'), 0);
+			FlxG.sound.music.fadeIn(1, 0, 0.8);
+		}
+		else 
+		{
+			switch (PlayState.SONG.song.toLowerCase())
+			{
+				case 'senpai':
+					FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				case 'thorns':
+					FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				case 'welcome':
+					FlxG.sound.playMusic(Paths.music('dial-ogue', 'week7'), 0);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				case 'executable':
+					FlxG.sound.playMusic(Paths.music('dial-ogue', 'week7'), 0);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				case 'windows-update':
+					FlxG.sound.playMusic(Paths.music('dial-ogue', 'week7'), 0);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				case 'return':
+					FlxG.sound.playMusic(Paths.music('windowsAngryGoBrrrr', 'week7'), 0);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+			}
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -98,29 +111,38 @@ class DialogueBox extends FlxSpriteGroup
 				add(face);
 			case 'welcome':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
-				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
-				box.width = 200;
-				box.height = 200;
+				box.frames = Paths.getSparrowAtlas('bubble.exe', 'shared');
+				box.animation.addByPrefix('normalOpen', 'bubble.exe opening', 24, false);
+				box.animation.addByIndices('normal', 'bubble.exe normal', [4], "", 24);
+				box.width = 220;
+				box.height = 220;
 				box.x = -100;
 				box.y = 375;
 			case 'executable':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
-				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
-				box.width = 200;
-				box.height = 200;
+				box.frames = Paths.getSparrowAtlas('bubble.exe', 'shared');
+				box.animation.addByPrefix('normalOpen', 'bubble.exe opening', 24, false);
+				box.animation.addByIndices('normal', 'bubble.exe normal', [4], "", 24);
+				box.width = 220;
+				box.height = 220;
 				box.x = -100;
 				box.y = 375;
 			case 'windows-update':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
-				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
-				box.width = 200;
-				box.height = 200;
+				box.frames = Paths.getSparrowAtlas('bubble.exe', 'shared');
+				box.animation.addByPrefix('normalOpen', 'bubble.exe opening', 24, false);
+				box.animation.addByIndices('normal', 'bubble.exe normal', [4], "", 24);
+				box.width = 220;
+				box.height = 220;
+				box.x = -100;
+				box.y = 375;
+			case 'return':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('bubble.exe', 'shared');
+				box.animation.addByPrefix('normalOpen', 'bubble.exe opening', 24, false);
+				box.animation.addByIndices('normal', 'bubble.exe normal', [4], "", 24);
+				box.width = 220;
+				box.height = 220;
 				box.x = -100;
 				box.y = 375;
 		}
@@ -129,8 +151,8 @@ class DialogueBox extends FlxSpriteGroup
 		
 		if (!hasDialog)
 			return;
-
-		if (PlayState.SONG.song.toLowerCase() == "senpai" || PlayState.SONG.song.toLowerCase() == "roses" || PlayState.SONG.song.toLowerCase() == "thorns" )
+		
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
 		{
 			portraitLeft = new FlxSprite(-20, 40);
 			portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
@@ -139,19 +161,31 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
-			portraitLeft.visible = false;	
+			portraitLeft.visible = false;
 		}
-		else if (PlayState.SONG.song.toLowerCase() == "welcome" || PlayState.SONG.song.toLowerCase() == "executable" || PlayState.SONG.song.toLowerCase() == "windows-update"){
-			portraitLeft = new FlxSprite(-1500, 40);
+		else if (PlayState.SONG.song.toLowerCase() == 'welcome' || PlayState.SONG.song.toLowerCase() == 'executable' || PlayState.SONG.song.toLowerCase() == 'windows-update')
+		{
+			portraitLeft = new FlxSprite(-1500, -20);
 			portraitLeft.frames = Paths.getSparrowAtlas('portraits/windowsPortrait', 'shared');
 			portraitLeft.animation.addByPrefix('enter', 'Windows Portrait Enter instance 1', 24, false);
 			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.175));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
-			portraitLeft.visible = false;	
+			portraitLeft.visible = false;
 		}
-		if (PlayState.SONG.song.toLowerCase() == "senpai" || PlayState.SONG.song.toLowerCase() == "roses" || PlayState.SONG.song.toLowerCase() == "thorns" )
+		else if (PlayState.SONG.song.toLowerCase() == 'return')
+		{
+			portraitLeft = new FlxSprite(-1500, -20);
+			portraitLeft.frames = Paths.getSparrowAtlas('portraits/windowsAngryPortrait', 'shared');
+			portraitLeft.animation.addByPrefix('enter', 'Windows Portrait Enter instance 1', 24, false);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.175));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
+		}
+		if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
 		{
 			portraitRight = new FlxSprite(0, 40);
 			portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
@@ -162,8 +196,9 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitRight);
 			portraitRight.visible = false;
 		}
-		else if (PlayState.SONG.song.toLowerCase() == "welcome" || PlayState.SONG.song.toLowerCase() == "executable" || PlayState.SONG.song.toLowerCase() == "windows-update"){
-			portraitRight = new FlxSprite(-50, 40);
+		else if (PlayState.SONG.song.toLowerCase() == 'welcome' || PlayState.SONG.song.toLowerCase() == 'executable' || PlayState.SONG.song.toLowerCase() == 'windows-update' || PlayState.SONG.song.toLowerCase() == 'return')
+		{
+			portraitRight = new FlxSprite(-50, -20);
 			portraitRight.frames = Paths.getSparrowAtlas('portraits/boyfriendPortrait', 'shared');
 			portraitRight.animation.addByPrefix('enter', 'BF Portrait Enter instance 1', 24, false);
 			portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.15));
@@ -171,8 +206,18 @@ class DialogueBox extends FlxSpriteGroup
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
 			portraitRight.visible = false;
+
+			portraitGf = new FlxSprite(-50, -20);
+			portraitGf.frames = Paths.getSparrowAtlas('portraits/girlfriendPortrait', 'shared');
+			portraitGf.animation.addByPrefix('enter', 'GF Portrait Enter instance 1', 24, false);
+			portraitGf.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.175));
+			portraitGf.updateHitbox();
+			portraitGf.scrollFactor.set();
+			portraitGf.flipX = true;
+			add(portraitGf);
+			portraitGf.visible = false;
 		}
-		
+
 		box.animation.play('normalOpen');
 		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 		box.updateHitbox();
@@ -181,25 +226,46 @@ class DialogueBox extends FlxSpriteGroup
 		box.screenCenter(X);
 		portraitLeft.screenCenter(X);
 
-		//handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
-		//add(handSelect);
-
-
 		if (!talkingRight)
 		{
-			//box.flipX = true;
+			// box.flipX = true;
 		}
 
-		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
-		dropText.font = 'Pixel Arial 11 Bold';
-		dropText.color = 0xFFD89494;
-		add(dropText);
+		if(PlayState.SONG.song.toLowerCase() == 'welcome' || PlayState.SONG.song.toLowerCase() == 'executable' || PlayState.SONG.song.toLowerCase() == 'windows-update' || PlayState.SONG.song.toLowerCase() == 'return')
+		{
+			   trace("custom fonts");
+			   dropText = new FlxText(202, 472, Std.int(FlxG.width * 0.6), "", 49);
+			   dropText.x = 200;
+			   dropText.y = 470;
+			   dropText.font = 'Tahoma';
+			   dropText.color = 0xFFD89494;
+			   add(dropText);
+	   
+			   swagDialogue = new FlxTypeText(200, 470, Std.int(FlxG.width * 0.6), "", 49);
+			   swagDialogue.font = 'Tahoma';
+			   swagDialogue.color = 0xFF3F2021;
+			   swagDialogue.x = 200;
+			   swagDialogue.y = 470;
+	   
+			   swagDialogue.showCursor = true;
+			   swagDialogue.cursorCharacter = "_";
+			   add(swagDialogue);
 
-		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		swagDialogue.font = 'Pixel Arial 11 Bold';
-		swagDialogue.color = 0xFF3F2021;
-		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
-		add(swagDialogue);
+		}
+		else if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns')
+		{
+			trace("old fonts");
+			dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
+			dropText.font = 'Pixel Arial 11 Bold';
+			dropText.color = 0xFFD89494;
+			add(dropText);
+		
+			swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
+			swagDialogue.font = 'Pixel Arial 11 Bold';
+			swagDialogue.color = 0xFF3F2021;
+			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
+			add(swagDialogue);
+		}
 
 		dialogue = new Alphabet(0, 80, "", false, true);
 		// dialogue.x = 90;
@@ -216,7 +282,7 @@ class DialogueBox extends FlxSpriteGroup
 			portraitLeft.visible = false;
 		if (PlayState.SONG.song.toLowerCase() == 'thorns')
 		{
-			portraitLeft.color = FlxColor.BLACK;
+			portraitLeft.visible = false;
 			swagDialogue.color = FlxColor.WHITE;
 			dropText.color = FlxColor.BLACK;
 		}
@@ -250,7 +316,7 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					isEnding = true;
 
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'welcome' || PlayState.SONG.song.toLowerCase() == 'executable' || PlayState.SONG.song.toLowerCase() == 'windows-update')
+					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'welcome' || PlayState.SONG.song.toLowerCase() == 'executable' || PlayState.SONG.song.toLowerCase() == 'windows-update' || PlayState.SONG.song.toLowerCase() == 'return')
 						FlxG.sound.music.fadeOut(2.2, 0);
 
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
@@ -267,7 +333,9 @@ class DialogueBox extends FlxSpriteGroup
 					{
 						finishThing();
 						kill();
+						swagDialogue.sounds = null;
 					});
+					
 				}
 			}
 			else
@@ -296,18 +364,53 @@ class DialogueBox extends FlxSpriteGroup
 		switch (curCharacter)
 		{
 			case 'dad':
+				portraitGf.visible = false;
 				portraitRight.visible = false;
 				if (!portraitLeft.visible)
 				{
+					if (PlayState.SONG.song.toLowerCase() == 'return')
+					{
+						portraitLeft.flipX = true;
+					}
 					portraitLeft.visible = true;
 					portraitLeft.animation.play('enter');
+					// iS SenPai oR WiNDmaN???
+					if(PlayState.SONG.song.toLowerCase() == "welcome" || PlayState.SONG.song.toLowerCase() == "executable" || PlayState.SONG.song.toLowerCase() == "windows-update" || DialogueBox.endSong)
+					{
+						trace("windman");
+						swagDialogue.sounds = [FlxG.sound.load(Paths.sound('windowsText'), 0.6)];
+					}
+					else if (PlayState.SONG.song.toLowerCase() == 'return' && !DialogueBox.endSong)
+					{
+						trace("windman but loud sound lmaooo"); 
+						swagDialogue.sounds = [FlxG.sound.load(Paths.sound('windowsText'), 1)];
+					}
+					else{
+						trace("simp lol");
+						swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
+						trace("s.uper i.ntense m.inecraft p.layer");
+						trace("lol saturday morning hangover");
+					}
 				}
 			case 'bf':
 				portraitLeft.visible = false;
+				portraitGf.visible = false;
 				if (!portraitRight.visible)
 				{
 					portraitRight.visible = true;
+					trace("bf pog!!!");
 					portraitRight.animation.play('enter');
+					swagDialogue.sounds = [FlxG.sound.load(Paths.sound('boyfriendText'), 0.6)];
+				}
+			case 'gf':
+				portraitLeft.visible = false;
+				portraitRight.visible = false;
+				if (!portraitGf.visible)
+				{
+					portraitGf.visible = true;
+					trace("gf pog!!!");
+					portraitGf.animation.play('enter');
+					swagDialogue.sounds = [FlxG.sound.load(Paths.sound('girlfriendText'), 0.6)];
 				}
 		}
 	}

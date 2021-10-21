@@ -24,46 +24,63 @@ class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
 
-	var weekData:Array<Dynamic> = [
-		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dad Battle'],
-		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly Nice', "Blammed"],
-		['Satin Panties', "High", "Milf"],
-		['Cocoa', 'Eggnog', 'Winter Horrorland'],
-		['Senpai', 'Roses', 'Thorns'],
-		['Welcome', 'Executable', 'Windows Update']
-	];
+	static function weekData():Array<Dynamic>
+	{
+		#if desktop
+		return [
+			['Tutorial'],
+            ['Welcome', 'Executable', 'Windows Update'],
+			['Return']
+		];
+		#else
+		var doc = js.Browser.window.document;
+		var url = doc.URL; //or any other document command supported by the browser.
+		var urlHandler = new js.html.URL(url);
+		var banned = true;
+		for (i in PiracyScreen.allowedHosts)
+		{
+			if (urlHandler.hostname == i)
+			{
+				banned = false;
+			}
+		}
+		if (banned)
+		{
+			return [
+				['No'],
+			];
+		}
+		else
+		{
+			return [
+				['Tutorial'],
+				['Welcome', 'Executable', 'Windows Update'],
+				['Return']
+			];
+		}
+		#end
+	}
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [];
 
+	#if desktop
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
-		['dad', 'bf', 'gf'],
-		['spooky', 'bf', 'gf'],
-		['pico', 'bf', 'gf'],
-		['mom', 'bf', 'gf'],
-		['parents-christmas', 'bf', 'gf'],
-		['senpai', 'bf', 'gf'],
+		['windows', 'bf', 'gf'],
 		['windows', 'bf', 'gf']
 	];
+	#else
+		var weekCharacters:Array<Dynamic> = [
+			['windows', 'bf', 'gf']
+		];
+	#end
 
-	var weekNames:Array<String> = [
-		"",
-		"Daddy Dearest",
-		"Spooky Month",
-		"PICO",
-		"MOMMY MUST MURDER",
-		"RED SNOW",
-		"Hating Simulator ft. Moawling",
-		"Memories"
-	];
+	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/weekNames'));
 
 	var txtWeekTitle:FlxText;
 
 	var curWeek:Int = 0;
-
 	var txtTracklist:FlxText;
 
 	var grpWeekText:FlxTypedGroup<MenuItem>;
@@ -76,8 +93,44 @@ class StoryMenuState extends MusicBeatState
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
 
+	function unlockWeeks():Array<Bool>
+	{
+		#if js
+		var allowedHosts:Array<String> = ["127.0.0.1", "epoxy.zuelsdorf.net"];
+		var doc = js.Browser.window.document;
+		var url = doc.URL; //or any other document command supported by the browser.
+		var urlHandler = new js.html.URL(url);
+		var banned = true;
+		for (i in allowedHosts)
+		{
+			if (urlHandler.hostname == i)
+			{
+				banned = false;
+			}
+		}
+		if(!banned)
+		{
+			weekCharacters = [
+				['', 'bf', 'gf'],
+				['windows', 'bf', 'gf'],
+				['windows', 'bf', 'gf']
+			];
+		}
+		#end
+		var weeks:Array<Bool> = [];
+
+		for(i in 0...weekNames.length)
+			weeks.push(true);
+		return weeks;
+
+		
+		weeks.push(true);
+	}
+
 	override function create()
 	{
+		weekUnlocked = unlockWeeks();
+
 		#if windows
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Story Mode Menu", null);
@@ -89,7 +142,10 @@ class StoryMenuState extends MusicBeatState
 		if (FlxG.sound.music != null)
 		{
 			if (!FlxG.sound.music.playing)
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			{
+				FlxG.sound.playMusic(Paths.music('velkommen'));
+				Conductor.changeBPM(102);
+			}
 		}
 
 		persistentUpdate = persistentDraw = true;
@@ -108,22 +164,22 @@ class StoryMenuState extends MusicBeatState
 		rankText.screenCenter(X);
 
 		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, 0xFFF9CF51);
+		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, FlxColor.WHITE);
 
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 		add(grpWeekText);
+
+		grpLocks = new FlxTypedGroup<FlxSprite>();
+		add(grpLocks);
 
 		var blackBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 56, FlxColor.BLACK);
 		add(blackBarThingie);
 
 		grpWeekCharacters = new FlxTypedGroup<MenuCharacter>();
 
-		grpLocks = new FlxTypedGroup<FlxSprite>();
-		add(grpLocks);
-
 		trace("Line 70");
 
-		for (i in 0...weekData.length)
+		for (i in 0...weekData().length)
 		{
 			var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 10, i);
 			weekThing.y += ((weekThing.height + 20) * i);
@@ -131,18 +187,25 @@ class StoryMenuState extends MusicBeatState
 			grpWeekText.add(weekThing);
 
 			weekThing.screenCenter(X);
-			weekThing.antialiasing = true;
+			if(FlxG.save.data.antialiasing)
+				{
+					weekThing.antialiasing = true;
+				}
 			// weekThing.updateHitbox();
 
 			// Needs an offset thingie
 			if (!weekUnlocked[i])
 			{
+				trace('locking week ' + i);
 				var lock:FlxSprite = new FlxSprite(weekThing.width + 10 + weekThing.x);
 				lock.frames = ui_tex;
 				lock.animation.addByPrefix('lock', 'lock');
 				lock.animation.play('lock');
 				lock.ID = i;
-				lock.antialiasing = true;
+				if(FlxG.save.data.antialiasing)
+				{
+					lock.antialiasing = true;
+				}
 				grpLocks.add(lock);
 			}
 		}
@@ -198,6 +261,19 @@ class StoryMenuState extends MusicBeatState
 
 		updateText();
 
+
+		var bullShit:Int = 0;
+
+		for (item in grpWeekText.members)
+		{
+			item.targetY = bullShit - curWeek;
+			if (item.targetY == Std.int(0) && weekUnlocked[curWeek])
+				item.alpha = 1;
+			else
+				item.alpha = 0.6;
+			bullShit++;
+		}
+
 		trace("Line 165");
 
 		super.create();
@@ -209,9 +285,34 @@ class StoryMenuState extends MusicBeatState
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 
 		scoreText.text = "WEEK SCORE:" + lerpScore;
-
+		#if windows
 		txtWeekTitle.text = weekNames[curWeek].toUpperCase();
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
+		#else
+		var allowedHosts:Array<String> = ["127.0.0.1", "epoxy.zuelsdorf.net"];
+		var doc = js.Browser.window.document;
+		var url = doc.URL; //or any other document command supported by the browser.
+		var urlHandler = new js.html.URL(url);
+		var banned = true;
+		for (i in allowedHosts)
+		{
+			if (urlHandler.hostname == i)
+			{
+				banned = false;
+			}
+		}
+		if (banned)
+		{
+			txtWeekTitle.text = "NO";
+			txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
+		}
+		else
+		{
+			trace(weekNames.length + " and " + curWeek);
+			txtWeekTitle.text = weekNames[curWeek].toUpperCase();
+			txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
+		}
+		#end
 
 		// FlxG.watch.addQuick('font', scoreText.font);
 
@@ -297,6 +398,10 @@ class StoryMenuState extends MusicBeatState
 			FlxG.switchState(new MainMenuState());
 		}
 
+		if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
+		FlxG.sound.music.volume = 1;
+
 		super.update(elapsed);
 	}
 
@@ -317,7 +422,7 @@ class StoryMenuState extends MusicBeatState
 				stopspamming = true;
 			}
 
-			PlayState.storyPlaylist = weekData[curWeek];
+			PlayState.storyPlaylist = weekData()[curWeek];
 			PlayState.isStoryMode = true;
 			selectedWeek = true;
 
@@ -342,7 +447,15 @@ class StoryMenuState extends MusicBeatState
 			PlayState.campaignScore = 0;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				LoadingState.loadAndSwitchState(new PlayState(), true);
+				if (curWeek == 7)
+				{
+					trace("pog mod");
+					LoadingState.loadAndSwitchState(new PlayState(), true);
+				}
+				else
+				{
+					LoadingState.loadAndSwitchState(new PlayState(), true);
+				}
 			});
 		}
 	}
@@ -391,10 +504,10 @@ class StoryMenuState extends MusicBeatState
 	{
 		curWeek += change;
 
-		if (curWeek >= weekData.length)
+		if (curWeek >= weekData().length)
 			curWeek = 0;
 		if (curWeek < 0)
-			curWeek = weekData.length - 1;
+			curWeek = weekData().length - 1;
 
 		var bullShit:Int = 0;
 
@@ -420,7 +533,7 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
 
 		txtTracklist.text = "Tracks\n";
-		var stringThing:Array<String> = weekData[curWeek];
+		var stringThing:Array<String> = weekData()[curWeek];
 
 		for (i in stringThing)
 			txtTracklist.text += "\n" + i;
@@ -435,5 +548,26 @@ class StoryMenuState extends MusicBeatState
 		#if !switch
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
 		#end
+	}
+
+	public static function unlockNextWeek(week:Int):Void
+	{
+		if(week <= weekData().length - 1 && FlxG.save.data.weekUnlocked == week)
+		{
+			weekUnlocked.push(true);
+			trace('Week ' + week + ' beat (Week ' + (week + 1) + ' unlocked)');
+		}
+
+		FlxG.save.data.weekUnlocked = weekUnlocked.length - 1;
+		FlxG.save.flush();
+	}
+
+	override function beatHit()
+	{
+		super.beatHit();
+
+		grpWeekCharacters.members[0].bopHead();
+		grpWeekCharacters.members[1].bopHead();
+		grpWeekCharacters.members[2].bopHead();
 	}
 }
